@@ -1,0 +1,7 @@
+Data structure: dictionary of ID's to rankings, ordered list
+Each participant has a unique ID based off submission order
+Preferences are New Member-favorable
+
+Step 1. Pull information from Google Sheets
+Step 2. Create pairings
+Step 3. Return pairings
