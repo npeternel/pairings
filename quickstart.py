@@ -63,18 +63,28 @@ def main():
                               discoveryServiceUrl=discoveryUrl)
 
     spreadsheetId = '1K7uC_Jezx4nNeiKP90HaPgq2v24TTaT37Z5QHdz6wAI'
-    rangeName = 'Sheet1!B2:E'
+    rangeName = 'Sheet1!B2:F'
     result = service.spreadsheets().values().get(
         spreadsheetId=spreadsheetId, range=rangeName).execute()
     values = result.get('values', [])
+    b_pref = {}
+    l_pref = {}
 
     if not values:
         print('No data found.')
     else:
         print('Participant, Preferences:')
         for row in values:
+            if row[0] == "L":
+                l_pref[row[1]] = [row[2], row[3], row[4]]
+            elif row[0] == "B":
+                b_pref[row[1]] = [row[2], row[3], row[4]]
+            else:
+                print("AHHH SOMETHING'S WRONG MAYBE DO AN ERROR THING")
             # Print columns A and E, which correspond to indices 0 and 4.
-            print('%s, [%s, %s, %s]' % (row[0], row[1], row[2], row[3]))
+            #print('%s: %s, [%s, %s, %s]' % (row[0], row[1], row[2], row[3], row[4]))
+    return b_pref, l_pref
+
 
 
 if __name__ == '__main__':
