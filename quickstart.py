@@ -62,8 +62,8 @@ def main():
     service = discovery.build('sheets', 'v4', http=http,
                               discoveryServiceUrl=discoveryUrl)
 
-    spreadsheetId = '1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms'
-    rangeName = 'Class Data!A2:E'
+    spreadsheetId = '1K7uC_Jezx4nNeiKP90HaPgq2v24TTaT37Z5QHdz6wAI'
+    rangeName = 'Sheet1!B2:E'
     result = service.spreadsheets().values().get(
         spreadsheetId=spreadsheetId, range=rangeName).execute()
     values = result.get('values', [])
@@ -71,10 +71,10 @@ def main():
     if not values:
         print('No data found.')
     else:
-        print('Name, Major:')
+        print('Participant, Preferences:')
         for row in values:
             # Print columns A and E, which correspond to indices 0 and 4.
-            print('%s, %s' % (row[0], row[4]))
+            print('%s, [%s, %s, %s]' % (row[0], row[1], row[2], row[3]))
 
 
 if __name__ == '__main__':
