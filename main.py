@@ -18,13 +18,13 @@ for key in l_pref.keys():
 
 def getLittle(name):
 	for little in little_list:
-		if little.getName == name:
+		if little.getName() == name:
 			return little
 	return NULL
 
 def getBig(name):
 	for big in big_list:
-		if big.getName == name:
+		if big.getName() == name:
 			return big
 	return NULL
 
