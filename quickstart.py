@@ -65,7 +65,6 @@ def main(rankNum):
     spreadsheetId = '1K7uC_Jezx4nNeiKP90HaPgq2v24TTaT37Z5QHdz6wAI'
     rangeEnd = chr((rankNum+2) + ord('A'))
     rangeName = 'Sheet1!B2:' + rangeEnd
-    print(rangeName)
     result = service.spreadsheets().values().get(
         spreadsheetId=spreadsheetId, range=rangeName).execute()
     values = result.get('values', [])

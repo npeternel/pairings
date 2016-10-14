@@ -1,45 +1,10 @@
 #Pairing system based off rankings that implements the Stable Marriage Algorithm
 #Authors: Angelina Wang and Nicole Peternel
 from quickstart import main
-
-b_pref, l_pref = main(3)
+from person import *
 
 big_list = []
 little_list = []
-
-
-
-class Person(object):
-
-	def __init__(self, name):
-		self.name = name
-		self.matched = False
-
-	def __str__(self):
-
-		return "name: " + self.name + ", matched: " + str(self.matched) + ", medium: " + self.medium
-
-	def isMatched(self):
-		return self.matched
-
-class Big(Person):
-
-	def __init__(self, name):
-		super(Big, self).__init__(name)
-		self.preferences = b_pref[self.name]
-		self.medium = 'big'
-
-
-class Little(Person):
-
-	def __init__(self, name):
-		super(Little, self).__init__(name)
-		self.preferences = l_pref[self.name]
-		self.medium = 'little'
-
-A = Big('A')
-print(A)
-print(A.preferences)
 
 for key in b_pref.keys():
 	big = Big(key)
@@ -50,4 +15,23 @@ for key in l_pref.keys():
 	little = Little(key)
 	little_list.append(little)
 	print('Little ' + little.name + ' added')
+
+def getLittle(name):
+	for little in little_list:
+		if little.getName == name:
+			return little
+	return NULL
+
+def getBig(name):
+	for big in big_list:
+		if big.getName == name:
+			return big
+	return NULL
+
+
+def pearings():
+	for big in big_list:
+		if (len(big.getPreferences()) > 0):
+			big.getPreferences()[0]
+	return 0
 
