@@ -12,17 +12,9 @@ class Person(object):
 
 		return "name: " + self.name + ", matched: " + str(self.matched) + ", medium: " + self.medium
 
-	def getMatched(self):
-		return self.matched
-
-	def getPreferences(self):
-		return self.preferences
-
-	def getName(self):
-		return self.name
-
 	def alterPreferencces(self):
 		self.preferences = self.preferences[1:]
+		self.matched = False
 
 class Big(Person):
 
@@ -30,7 +22,7 @@ class Big(Person):
 		super(Big, self).__init__(name)
 		self.preferences = b_pref[self.name]
 		self.medium = 'big'
-
+		self.prospects = []
 
 class Little(Person):
 
