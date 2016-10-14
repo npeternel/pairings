@@ -14,6 +14,10 @@ class Person(object):
 		self.name = name
 		self.matched = False
 
+	def __str__(self):
+
+		return "name: " + self.name + ", matched: " + str(self.matched) + ", medium: " + self.medium
+
 	def isMatched(self):
 		return self.matched
 
@@ -33,6 +37,5 @@ class Little(Person):
 		self.medium = 'little'
 
 A = Big('A')
-print(A.name)
-print(A.isMatched())
+print(A)
 print(A.preferences)
