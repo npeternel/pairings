@@ -4,8 +4,9 @@ from quickstart import main
 
 b_pref, l_pref = main(3)
 
-for keys, values in b_pref.items():
-	print('%s %s' % (keys, values)) # has a 'u' which is weird but stack overflow says it's unicode and it's all chill
+big_list = []
+little_list = []
+
 
 
 class Person(object):
@@ -32,7 +33,13 @@ class Little(Person):
 		self.preferences = l_pref[self.name]
 		self.medium = 'little'
 
-A = Big('A')
-print(A.name)
-print(A.isMatched())
-print(A.preferences)
+for key in b_pref.keys():
+	big = Big(key)
+	big_list.append(big)
+	print('Big ' + big.name + ' added')
+
+for key in l_pref.keys():
+	little = Little(key)
+	little_list.append(little)
+	print('Little ' + little.name + ' added')
+
