@@ -1,8 +1,8 @@
 from main import *
 
 A = Big('A')
-print(A)
-print(A.preferences)
+#print(A)
+#print(A.preferences)
 
 pearings()
-returnPearings()
+#returnPearings()
