@@ -42,7 +42,7 @@ def pearings():
 			if (len(little.preferences) > 0):
 				big = getBig(little.preferences[0])
 				if big != None and not big.matched:
-					big.prospects += little
+					big.prospects.append(little)
 					big.matched = True
 					little.matched = True
 					if big.prospects == 2:
