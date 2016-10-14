@@ -12,7 +12,7 @@ class Person(object):
 
 		return "name: " + self.name + ", matched: " + str(self.matched) + ", medium: " + self.medium
 
-	def alterPreferencces(self):
+	def alterPreferences(self):
 		self.preferences = self.preferences[1:]
 		self.matched = False
 
