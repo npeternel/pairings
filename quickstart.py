@@ -48,7 +48,7 @@ def get_credentials():
         print('Storing credentials to ' + credential_path)
     return credentials
 
-def main():
+def main(rankNum):
     """Shows basic usage of the Sheets API.
 
     Creates a Sheets API service object and prints the names and majors of
@@ -63,7 +63,9 @@ def main():
                               discoveryServiceUrl=discoveryUrl)
 
     spreadsheetId = '1K7uC_Jezx4nNeiKP90HaPgq2v24TTaT37Z5QHdz6wAI'
-    rangeName = 'Sheet1!B2:F'
+    rangeEnd = chr((rankNum+2) + ord('A'))
+    rangeName = 'Sheet1!B2:' + rangeEnd
+    print(rangeName)
     result = service.spreadsheets().values().get(
         spreadsheetId=spreadsheetId, range=rangeName).execute()
     values = result.get('values', [])
@@ -76,9 +78,9 @@ def main():
         print('Participant, Preferences:')
         for row in values:
             if row[0] == "L":
-                l_pref[row[1]] = [row[2], row[3], row[4]]
+                l_pref[row[1]] = row[2:]
             elif row[0] == "B":
-                b_pref[row[1]] = [row[2], row[3], row[4]]
+                b_pref[row[1]] = row[2:]
             else:
                 print("AHHH SOMETHING'S WRONG MAYBE DO AN ERROR THING")
             # Print columns A and E, which correspond to indices 0 and 4.
