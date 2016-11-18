@@ -5,17 +5,25 @@ from person import *
 
 big_list = []
 little_list = []
-num_preferences = 3
+rank = 3
 
-for key in b_pref.keys():
-	big = Big(key)
-	big_list.append(big)
-	#print('Big ' + big.name + ' added')
+def main():
+	createLists()
+	if big_list and little_list:
+		pearings()
+	else:
+		print("Pairings list incomplete")
 
-for key in l_pref.keys():
-	little = Little(key)
-	little_list.append(little)
-	#print('Little ' + little.name + ' added')
+def rankNum():
+	return rank
+
+def createLists():
+	for key in b_pref.keys():
+		big = Big(key)
+		big_list.append(big)
+	for key in l_pref.keys():
+		little = Little(key)
+		little_list.append(little)
 
 def getLittle(name):
 	for little in little_list:
@@ -39,10 +47,10 @@ def keepGoing():
 
 
 def pearings():
-	#while keepGoing():
-	for i in range(num_preferences):
+	for i in range(rank):
 		for little in little_list:
 			if (len(little.preferences) > 0) and (not little.matched):
+				big = little.preferences[0]
 				big = getBig(little.preferences[0])
 				if big != None:
 					big.prospects.append(little)
@@ -72,24 +80,23 @@ def pearings():
 								big.prospects = [one]
 								two.alterPreferences()
 	returnPearings()
-	return None
 
 def returnPearings():
-	unmatchedLittle = []
-	unmatchedBig = []
+	unmatchedLittles = []
+	unmatchedBigs = []
 	for little in little_list:
 		if little.matched:
 			print(little.name + " with " + little.preferences[0])
 		else:
-			unmatchedLittle.append(str(little.name))
+			unmatchedLittles.append(str(little.name))
+	print("Unmatched littles: ")
+	print(unmatchedLittles)
 	for big in big_list:
 		if not big.matched:
-			unmatchedBig.append(str(big.name))
-	print("Unmatched littles: ")
-	print(unmatchedLittle)
+			unmatchedBigs.append(str(big.name))
 	print("Unmatched bigs: ")
-	print(unmatchedBig)
+	print(unmatchedBigs)
 
-if __name__ == '__main__':
-    pearings()
+if __name__ == "__main__":
+	main()
 

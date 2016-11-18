@@ -1,7 +1,6 @@
 from __future__ import print_function
 import httplib2
 import os
-from main import rankNum
 
 from apiclient import discovery
 from oauth2client import client
@@ -49,14 +48,13 @@ def get_credentials():
         print('Storing credentials to ' + credential_path)
     return credentials
 
-def getData():
+def main(rankNum):
     """Shows basic usage of the Sheets API.
 
     Creates a Sheets API service object and prints the names and majors of
     students in a sample spreadsheet:
     https://docs.google.com/spreadsheets/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/edit
     """
-    rank = rankNum()
     credentials = get_credentials()
     http = credentials.authorize(httplib2.Http())
     discoveryUrl = ('https://sheets.googleapis.com/$discovery/rest?'
@@ -65,29 +63,14 @@ def getData():
                               discoveryServiceUrl=discoveryUrl)
 
     spreadsheetId = '1K7uC_Jezx4nNeiKP90HaPgq2v24TTaT37Z5QHdz6wAI'
-    rangeEnd = chr((rank+2) + ord('A'))
+    rangeEnd = chr((rankNum+2) + ord('A'))
     rangeName = 'Sheet1!B2:' + rangeEnd
+    print(rangeName)
     result = service.spreadsheets().values().get(
         spreadsheetId=spreadsheetId, range=rangeName).execute()
     values = result.get('values', [])
     b_pref = {}
     l_pref = {}
-
-    '''# write practice start
-    writeToId = '1w1FZSpHGMVa4YQyUvPWFabNXJrP-fsybQEi83q1zjpw'
-    PUT https://sheets.googleapis.com/v4/spreadsheets/writeToId/values/Sheet1!A1:D5?valueInputOption=USER_ENTERED
-    {
-      "range": "Sheet1!A1:D5",
-      "majorDimension": "ROWS",
-      "values": [
-        ["Item", "Cost", "Stocked", "Ship Date"],
-        ["Wheel", "$20.50", "4", "3/1/2016"],
-        ["Door", "$15", "2", "3/15/2016"],
-        ["Engine", "$100", "1", "30/20/2016"],
-        ["Totals", "=SUM(B2:B4)", "=SUM(C2:C4)", "=MAX(D2:D4)"]
-      ],
-    }
-    # write practice end'''
 
     if not values:
         print('No data found.')
@@ -106,3 +89,5 @@ def getData():
 
 
 
+if __name__ == '__main__':
+    main()

@@ -1,6 +1,6 @@
-from sheets import main
+from sheets import getData
 
-b_pref, l_pref = main(3)
+b_pref, l_pref = getData()
 
 class Person(object):
 
