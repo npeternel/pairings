@@ -1,10 +1,11 @@
 #Pairing system based off rankings that implements the Stable Marriage Algorithm
 #Authors: Angelina Wang and Nicole Peternel
-from sheets import main
+from sheets import *
 from person import *
 
 big_list = []
 little_list = []
+num_preferences = 3
 
 for key in b_pref.keys():
 	big = Big(key)
@@ -39,7 +40,7 @@ def keepGoing():
 
 def pearings():
 	#while keepGoing():
-	for i in range(3):
+	for i in range(num_preferences):
 		for little in little_list:
 			if (len(little.preferences) > 0) and (not little.matched):
 				big = getBig(little.preferences[0])
@@ -74,11 +75,21 @@ def pearings():
 	return None
 
 def returnPearings():
-	unmatched = []
+	unmatchedLittle = []
+	unmatchedBig = []
 	for little in little_list:
 		if little.matched:
 			print(little.name + " with " + little.preferences[0])
 		else:
-			unmatched.append(str(little.name))
-	print(unmatched)
+			unmatchedLittle.append(str(little.name))
+	for big in big_list:
+		if not big.matched:
+			unmatchedBig.append(str(big.name))
+	print("Unmatched littles: ")
+	print(unmatchedLittle)
+	print("Unmatched bigs: ")
+	print(unmatchedBig)
+
+if __name__ == '__main__':
+    pearings()
 

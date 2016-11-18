@@ -21,6 +21,9 @@ class Big(Person):
 	def __init__(self, name):
 		super(Big, self).__init__(name)
 		self.preferences = b_pref[self.name]
+		'''self.prefs = []
+		for pref in self.preferences:
+			self.prefs.append(getBig(pref))'''
 		self.medium = 'big'
 		self.prospects = []
 

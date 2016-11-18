@@ -71,6 +71,22 @@ def main(rankNum):
     b_pref = {}
     l_pref = {}
 
+    '''# write practice start
+    writeToId = '1w1FZSpHGMVa4YQyUvPWFabNXJrP-fsybQEi83q1zjpw'
+    PUT https://sheets.googleapis.com/v4/spreadsheets/writeToId/values/Sheet1!A1:D5?valueInputOption=USER_ENTERED
+    {
+      "range": "Sheet1!A1:D5",
+      "majorDimension": "ROWS",
+      "values": [
+        ["Item", "Cost", "Stocked", "Ship Date"],
+        ["Wheel", "$20.50", "4", "3/1/2016"],
+        ["Door", "$15", "2", "3/15/2016"],
+        ["Engine", "$100", "1", "30/20/2016"],
+        ["Totals", "=SUM(B2:B4)", "=SUM(C2:C4)", "=MAX(D2:D4)"]
+      ],
+    }
+    # write practice end'''
+
     if not values:
         print('No data found.')
     else:
