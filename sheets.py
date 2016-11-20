@@ -73,22 +73,6 @@ def getData():
     b_pref = {}
     l_pref = {}
 
-    '''# write practice start
-    writeToId = '1w1FZSpHGMVa4YQyUvPWFabNXJrP-fsybQEi83q1zjpw'
-    PUT https://sheets.googleapis.com/v4/spreadsheets/writeToId/values/Sheet1!A1:D5?valueInputOption=USER_ENTERED
-    {
-      "range": "Sheet1!A1:D5",
-      "majorDimension": "ROWS",
-      "values": [
-        ["Item", "Cost", "Stocked", "Ship Date"],
-        ["Wheel", "$20.50", "4", "3/1/2016"],
-        ["Door", "$15", "2", "3/15/2016"],
-        ["Engine", "$100", "1", "30/20/2016"],
-        ["Totals", "=SUM(B2:B4)", "=SUM(C2:C4)", "=MAX(D2:D4)"]
-      ],
-    }
-    # write practice end'''
-
     if not values:
         print('No data found.')
     else:
@@ -104,5 +88,32 @@ def getData():
             #print('%s: %s, [%s, %s, %s]' % (row[0], row[1], row[2], row[3], row[4]))
     return b_pref, l_pref
 
+'''def writeResults():
+    # write practice start
+    writeToId = '1w1FZSpHGMVa4YQyUvPWFabNXJrP-fsybQEi83q1zjpw'
+    values = [
+        [
+            1, 2, 3
+        # Cell values ...
+        ],
+        # Additional rows ...
+    ]
+    body = {
+        'values': values
+    }
+    value_input_option = "RAW"
+    result = service.spreadsheets().values().update(
+    spreadsheetId=writeToId, range="Result",
+    valueInputOption=value_input_option, body=body).execute()
+    "range": "Sheet1!A1:D5",
+        "majorDimension": "ROWS",
+        "values": [
+            ["Item", "Cost", "Stocked", "Ship Date"],
+            ["Wheel", "$20.50", "4", "3/1/2016"],
+            ["Door", "$15", "2", "3/15/2016"],
+            ["Engine", "$100", "1", "30/20/2016"],
+            ["Totals", "=SUM(B2:B4)", "=SUM(C2:C4)", "=MAX(D2:D4)"]
+        ],'''
+    # write practice end
 
 

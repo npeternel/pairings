@@ -1,4 +1,4 @@
-from sheets import getData
+from sheets import *
 
 b_pref, l_pref = getData()
 
