@@ -4,8 +4,6 @@ import sys
 #A = Big('A')
 #print(A)
 #print(A.preferences)
-
-<<<<<<< HEAD
 #pearings()
 #returnPearings()
 
@@ -20,7 +18,5 @@ if __name__ == "__main__":
 	parser.add_argument('-a', '-b', nargs='*', help='Run specified tests. If no arguments, run all tests.')
 	args = parser.parse_args()
 	main(args)'''
-=======
 main()
 #returnPearings()
->>>>>>> 29a5d622c31e34cef3e5ab865376725a8aab1dae

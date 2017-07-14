@@ -1,7 +1,7 @@
 from __future__ import print_function
 import httplib2
 import os
-from main import rankNum
+#from main import rankNum
 
 from apiclient import discovery
 from oauth2client import client
@@ -49,14 +49,15 @@ def get_credentials():
         print('Storing credentials to ' + credential_path)
     return credentials
 
-def getData():
+def getData(spreadsheet_id):
     """Shows basic usage of the Sheets API.
 
     Creates a Sheets API service object and prints the names and majors of
     students in a sample spreadsheet:
     https://docs.google.com/spreadsheets/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/edit
     """
-    rank = rankNum()
+    #rank = rankNum()
+    rank = 3 # shouldn't be hardcoded
     credentials = get_credentials()
     http = credentials.authorize(httplib2.Http())
     discoveryUrl = ('https://sheets.googleapis.com/$discovery/rest?'
@@ -64,7 +65,8 @@ def getData():
     service = discovery.build('sheets', 'v4', http=http,
                               discoveryServiceUrl=discoveryUrl)
 
-    spreadsheetId = '1K7uC_Jezx4nNeiKP90HaPgq2v24TTaT37Z5QHdz6wAI'
+    #spreadsheetId = '1K7uC_Jezx4nNeiKP90HaPgq2v24TTaT37Z5QHdz6wAI'
+    spreadsheetId = spreadsheet_id
     rangeEnd = chr((rank+2) + ord('A'))
     rangeName = 'Sheet1!B2:' + rangeEnd
     result = service.spreadsheets().values().get(
@@ -76,7 +78,6 @@ def getData():
     if not values:
         print('No data found.')
     else:
-        print('Participant, Preferences:')
         for row in values:
             if row[0] == "L":
                 l_pref[row[1]] = row[2:]

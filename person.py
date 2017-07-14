@@ -1,6 +1,10 @@
 from sheets import *
 
-b_pref, l_pref = getData()
+b_pref = {}
+l_pref = {}
+
+def acquireData(spreadsheet_id):
+	b_pref, l_pref = getData(spreadsheet_id)
 
 class Person(object):
 

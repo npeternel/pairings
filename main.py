@@ -83,7 +83,7 @@ def pearings():
 	returnPearings()
 
 def returnPearings():
-	f = open("results", "w")
+	f = open("static/results", "w")
 	unmatchedLittles = []
 	unmatchedBigs = []
 	for little in little_list:
