@@ -87,6 +87,7 @@ def getData(spreadsheet_id):
                 print("AHHH SOMETHING'S WRONG MAYBE DO AN ERROR THING")
             # Print columns A and E, which correspond to indices 0 and 4.
             #print('%s: %s, [%s, %s, %s]' % (row[0], row[1], row[2], row[3], row[4]))
+    print(b_pref)
     return b_pref, l_pref
 
 '''def writeResults():

@@ -13,8 +13,8 @@ def render_static():
 
 @app.route('/query', methods=['POST'])
 def query():
-	acquireData(request.form['spreadsheet id'])
-	main()
+	#acquireData(request.form['spreadsheet id'])
+	main(request.form['spreadsheet id'])
 	return redirect('/display/')
 
 if __name__ == '__main__':

@@ -1,14 +1,15 @@
 #Pairing system based off rankings that implements the Stable Marriage Algorithm
 #Authors: Angelina Wang and Nicole Peternel
 from person import *
+#from sheets import getData
 #from sheets import writeResults
 
 big_list = []
 little_list = []
 rank = 3
 
-def main():
-	createLists()
+def main(spreadsheet_id):
+	createLists(spreadsheet_id)
 	if big_list and little_list:
 		pearings()
 	else:
@@ -18,7 +19,8 @@ def main():
 def rankNum():
 	return rank
 
-def createLists():
+def createLists(spreadsheet_id):
+	b_pref, l_pref = acquireData(spreadsheet_id)
 	for key in b_pref.keys():
 		big = Big(key)
 		big_list.append(big)
@@ -99,5 +101,5 @@ def returnPearings():
 	f.close()
 
 if __name__ == "__main__":
-	main()
+	main(spreadsheet_id)
 

@@ -4,7 +4,10 @@ b_pref = {}
 l_pref = {}
 
 def acquireData(spreadsheet_id):
+	global b_pref
+	global l_pref
 	b_pref, l_pref = getData(spreadsheet_id)
+	return (b_pref, l_pref)
 
 class Person(object):
 
