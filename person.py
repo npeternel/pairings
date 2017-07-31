@@ -4,10 +4,10 @@ b_pref = {}
 l_pref = {}
 
 def acquireData(spreadsheet_id):
+	global a_pref
 	global b_pref
-	global l_pref
-	b_pref, l_pref = getData(spreadsheet_id)
-	return (b_pref, l_pref)
+	a_pref, b_pref = getData(spreadsheet_id)
+	return (a_pref, b_pref)
 
 class Person(object):
 
@@ -23,21 +23,21 @@ class Person(object):
 		self.preferences = self.preferences[1:]
 		self.matched = False
 
-class Big(Person):
+class ItemA(Person):
 
 	def __init__(self, name):
-		super(Big, self).__init__(name)
-		self.preferences = b_pref[self.name]
+		super(ItemA, self).__init__(name)
+		self.preferences = a_pref[self.name]
 		'''self.prefs = []
 		for pref in self.preferences:
 			self.prefs.append(getBig(pref))'''
-		self.medium = 'big'
+		self.medium = 'A'
 		self.prospects = []
 
-class Little(Person):
+class ItemB(Person):
 
 	def __init__(self, name):
-		super(Little, self).__init__(name)
-		self.preferences = l_pref[self.name]
-		self.medium = 'little'
+		super(ItemB, self).__init__(name)
+		self.preferences = b_pref[self.name]
+		self.medium = 'B'
 
