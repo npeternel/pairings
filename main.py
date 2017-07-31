@@ -4,13 +4,13 @@ from person import *
 #from sheets import getData
 #from sheets import writeResults
 
-big_list = []
-little_list = []
+a_list = []
+b_list = []
 rank = 3
 
 def main(spreadsheet_id):
 	createLists(spreadsheet_id)
-	if big_list and little_list:
+	if a_list and b_list:
 		pearings()
 	else:
 		print("Pairings list incomplete")
@@ -20,84 +20,84 @@ def rankNum():
 	return rank
 
 def createLists(spreadsheet_id):
-	b_pref, l_pref = acquireData(spreadsheet_id)
+	a_pref, b_pref = acquireData(spreadsheet_id)
+	for key in a_pref.keys():
+		a = ItemA(key)
+		a_list.append(a)
 	for key in b_pref.keys():
-		big = Big(key)
-		big_list.append(big)
-	for key in l_pref.keys():
-		little = Little(key)
-		little_list.append(little)
+		b = ItemB(key)
+		b_list.append(b)
 
-def getLittle(name):
-	for little in little_list:
-		if little.name == name:
-			return little
+def getItemB(name):
+	for a in a_list:
+		if a.name == name:
+			return a
 	return None
 
-def getBig(name):
-	for big in big_list:
-		if big.name == name:
-			return big
+def getItemA(name):
+	for b in b_list:
+		if b.name == name:
+			return b
 	return None
 
 def keepGoing():
 	rtn = False
-	for little in little_list:
-		if not little.matched and len(little.preferences) > 0:
-			print(little)
+	for a in a_list:
+		if not a.matched and len(a.preferences) > 0:
+			print(a)
 			rtn = True
 	return rtn
 
 
 def pearings():
 	for i in range(rank):
-		for little in little_list:
-			if (len(little.preferences) > 0) and (not little.matched):
-				big = little.preferences[0]
-				big = getBig(little.preferences[0])
-				if big != None:
-					big.prospects.append(little)
-					big.matched = True
-					little.matched = True
-					if len(big.prospects) == 2:
-						one = big.prospects[0]
-						two = big.prospects[1]
-						if (one.name not in big.preferences) and (two.name not in big.preferences):
-							if one.preferences.index(big.name) > two.preferences.index(big.name):
-								big.prospects = [two]
+		for a in a_list:
+			if (len(a.preferences) > 0) and (not a.matched):
+				b = a.preferences[0]
+				b = getItemB(a.preferences[0])
+				if b != None:
+					b.prospects.append(a)
+					b.matched = True
+					a.matched = True
+					if len(b.prospects) == 2:
+						one = b.prospects[0]
+						two = b.prospects[1]
+						if (one.name not in b.preferences) and (two.name not in b.preferences):
+							if one.preferences.index(b.name) > two.preferences.index(b.name):
+								b.prospects = [two]
 								one.alterPreferences()
 							else:
-								big.prospects = [one]
+								b.prospects = [one]
 								two.alterPreferences()
-						elif one.name not in big.preferences:
-							big.prospects = [two]
+						elif one.name not in b.preferences:
+							b.prospects = [two]
 							one.alterPreferences()
-						elif two.name not in big.preferences:
-							big.prospects = [one]
+						elif two.name not in b.preferences:
+							b.prospects = [one]
 							two.alterPreferences()
 						else:
-							if big.preferences.index(one.name) > big.preferences.index(two.name):
-								big.prospects = [two]
+							if b.preferences.index(one.name) > b.preferences.index(two.name):
+								b.prospects = [two]
 								one.alterPreferences()
 							else:
-								big.prospects = [one]
+								b.prospects = [one]
 								two.alterPreferences()
 	returnPearings()
 
 def returnPearings():
 	f = open("static/results", "w")
-	unmatchedLittles = []
-	unmatchedBigs = []
-	for little in little_list:
-		if little.matched:
-			f.write(little.name + " with " + little.preferences[0] + "\n")
+	unmatchedAs = []
+	unmatchedBs = []
+	for a in a_list:
+		if a.matched:
+			f.write(a.name + " with " + a.preferences[0] + "\n")
 		else:
-			unmatchedLittles.append(str(little.name))
-	for big in big_list:
-		if not big.matched:
-			unmatchedBigs.append(str(big.name))
-	f.write("Unmatched littles: " + " ".join(unmatchedLittles) + "\n")
-	f.write("Unmatched bigs: " + " ".join(unmatchedBigs) + "\n")
+			unmatchedAs.append(str(a.name))
+	for b in b_list:
+		if not b.matched:
+			unmatchedBs.append(str(b.name))
+	f.write("Unmatched As: " + " ".join(unmatchedAs) + "\n")
+	f.write("Unmatched Bs: " + " ".join(unmatchedBs) + "\n")
 	f.close()
 
 if __name__ == "__main__":
