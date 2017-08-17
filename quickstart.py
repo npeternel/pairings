@@ -69,23 +69,23 @@ def main(rankNum):
     result = service.spreadsheets().values().get(
         spreadsheetId=spreadsheetId, range=rangeName).execute()
     values = result.get('values', [])
+    a_pref = {}
     b_pref = {}
-    l_pref = {}
 
     if not values:
         print('No data found.')
     else:
         print('Participant, Preferences:')
         for row in values:
-            if row[0] == "L":
-                l_pref[row[1]] = row[2:]
+            if row[0] == "A":
+                a_pref[row[1]] = row[2:]
             elif row[0] == "B":
                 b_pref[row[1]] = row[2:]
             else:
                 print("AHHH SOMETHING'S WRONG MAYBE DO AN ERROR THING")
             # Print columns A and E, which correspond to indices 0 and 4.
             #print('%s: %s, [%s, %s, %s]' % (row[0], row[1], row[2], row[3], row[4]))
-    return b_pref, l_pref
+    return a_pref, b_pref
 
 
 
