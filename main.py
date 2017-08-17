@@ -28,13 +28,13 @@ def createLists(spreadsheet_id):
 		b = ItemB(key)
 		b_list.append(b)
 
-def getItemB(name):
+def getItemA(name):
 	for a in a_list:
 		if a.name == name:
 			return a
 	return None
 
-def getItemA(name):
+def getItemB(name):
 	for b in b_list:
 		if b.name == name:
 			return b
@@ -53,7 +53,7 @@ def pearings():
 	for i in range(rank):
 		for a in a_list:
 			if (len(a.preferences) > 0) and (not a.matched):
-				b = a.preferences[0]
+				#b = a.preferences[0]
 				b = getItemB(a.preferences[0])
 				if b != None:
 					b.prospects.append(a)

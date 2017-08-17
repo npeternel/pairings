@@ -32,7 +32,7 @@ class ItemA(Person):
 		for pref in self.preferences:
 			self.prefs.append(getBig(pref))'''
 		self.medium = 'A'
-		self.prospects = []
+		#self.prospects = []
 
 class ItemB(Person):
 
@@ -40,4 +40,5 @@ class ItemB(Person):
 		super(ItemB, self).__init__(name)
 		self.preferences = b_pref[self.name]
 		self.medium = 'B'
+		self.prospects = []
 
